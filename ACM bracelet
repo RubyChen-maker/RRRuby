@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int C(const void*p1,const void*p2)
+{	
+ return strcmp((char*)p1,(char*)p2);
+}
+int main()
+{ 
+ int i,j;   
+ char l[101];    
+ while(scanf("%s",l)!= EOF)
+ {        
+  int len = strlen(l);        
+  char out[101][101];        
+  for(i=0; i<len; i++)
+   {            
+    for(j=0; j<len; j++)
+     {                
+       out[i][j] = l[(j+i)%len];            
+     }            
+    out[i][len] = '\0';        
+   }        
+   qsort(out,len,sizeof(out[0]),C);        
+   printf("%s\n",out[0]);    
+  }    
+return 0;
+}
