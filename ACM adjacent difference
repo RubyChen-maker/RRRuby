@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+# define N 1000
+int l[N],o[N];
+int f1(const void*a,const void*b)
+{	
+  return *(int*)a-*(int*)b;
+}
+int main()
+{	
+ int t,n,i,j;	
+ scanf("%d",&t);	
+ for(i=0;i<t;i++)
+  {		
+   scanf("%d",&n);		
+   for(j=0;j<n;j++)
+    {			
+     scanf("%d",&l[j]);		
+    }		
+   for(j=0;j<n;j++)
+    {			
+     if(j!=0)
+     o[j]=l[j]-l[j-1];						
+     else			
+     o[0]=l[0];		
+     }		
+    qsort(o,n,sizeof(int),f1);		
+    printf("Case %d:\n",i+1);		
+    for(j=0;j<n;j++)
+    {			
+     printf("%d",o[j]);			
+     if(j!=n-1)			
+     printf(" "); 		
+    }		
+    if(i!=t-1)		
+    printf("\n\n");	
+   }
+} 
+
