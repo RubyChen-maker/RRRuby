@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+int num[5000007];
+int res[350000];
+int main()
+{	
+ int i,j,sum=0,k;	
+ long long n;	
+ memset(num,0,sizeof(num));	
+ for(i=2;i<5000000;i++)
+ {		
+ if(num[i]==0)
+ {			
+  num[i]=1;			
+  res[sum]=i;			
+  sum++;			
+  n=i*i;			
+  for(j=i+i;j<5000000;j=j+i)
+  {				
+   num[j]=1;				
+   if(j==n)
+   {					
+    res[sum]=j;					
+    sum++;					
+    n=n*i;				
+    }		
+   }		
+  }	
+ }	
+ //printf("%d\n",sum);	
+sort(res,res+sum);	
+while(~scanf("%d",&k))
+{		
+ if(k<=348940)		
+ printf("%d\n",res[k-1]);		
+ else		
+ printf("-1\n");	
+}	
+ return 0;
+}
+
