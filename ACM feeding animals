@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h> 
+#define INF 10001 
+int main()
+{    
+  int k;    
+  while((scanf("%d" , &k)) != EOF)    
+  {          
+   int a[8][k];          
+   int i , j;           
+   for(i =0;i<8;i++)              
+   {                  
+     for(j =0;j<k;j++)                  
+     {                     
+     scanf("%d",&a[i][j]);                   
+     }              
+   }           
+  int l1[10001];          
+  memset(l1,10001,sizeof(l1));           
+  int sum = 0;          
+  for(j=0; j < k; j++)              
+   {                    
+    for(i=0;i < 8;i++)                    
+     {                              
+       l1[j] = l1[j] < a[i][j] ? l1[j] : a[i][j];                    
+     }                
+    sum+= l1[j];              
+   }          
+  printf("%d\n",sum);    
+  }    
+return 0; 
+}  
+
