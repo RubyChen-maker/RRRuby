@@ -1,0 +1,55 @@
+#include<stdio.h>
+#define N 100
+int main(void)
+{
+	int size[N],point[N],i,j,b,as,ap,n;
+	float each[N]; 
+	ap=0;
+	while(scanf("%d",&n)!=EOF)
+{
+	
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d%d",&size[i],&point[i]);
+		
+		each[i]=point[i]*1.0/size[i];
+	}
+	scanf("%d",&as);
+	
+	for(i=1;i<=n-1;i++)
+	{
+	   for(j=i+1;j<=n;j++)
+	   {
+	   	if(each[i]>each[j])
+	   	   {
+	   		b=point[j];
+	   		point[j]=point[i];
+	   		point[i]=b;
+	   		b=size[j];
+	   		size[j]=size[i];
+	   		size[i]=b;
+	   		b=each[j];
+	   		each[j]=each[i];
+	   		each[i]=b;
+		   }
+	   }
+    }
+	   for(i=n;i>=1;i--)
+	   {
+	   	   if(as-size[i]>=0)
+	        {
+	        	as=as-size[i];
+	        	ap+=point[i];
+			}
+			else
+			{
+			ap+=as*point[i]*1.0/size[i];
+			break;	
+			}
+	   }
+	printf("%d\n",ap) ;
+}
+	return 0;
+	   
+ }
+
