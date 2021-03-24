@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h> 
+int count(char line[],char key[])
+{    
+ int l1,l2,i,j,count=0,max=0;    
+ l1=strlen(line);    
+ l2=strlen(key);    
+ for (i = 0; i < l1; i++) 
+ {      
+  for (j = 0; j < l2; j++) 
+  {          
+   if (line[i + j] != key[j])             
+   {                 
+    count=0;                 
+    break;             
+   }         
+  }         
+  if (j == l2) 
+  {            
+   i += l2 - 1;    
+   count++;         
+  }         
+  if(max<count) 
+  max=count;     
+ }     
+ return max; 
+}  
+
+int main()
+{    
+ int t,i,j;    
+ scanf("%d",&t);    
+ while(t--)    
+ {        
+  char a[100000];        
+  char d[]="dongfangxu";        
+  char z[]="zap";        
+  int maxd=0,maxz=0;       
+  scanf("%s",a);        
+  maxd=count(a,d);       
+  maxz=count(a,z);        
+  if(maxd>=maxz)        
+  printf("dongfangxu!\n");        
+  else        
+  printf("zap!\n");        
+ }    
+return 0;
+} 
+
