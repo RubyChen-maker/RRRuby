@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main()
+{	
+ int n,m,a,out,i;	
+ while(scanf("%d %d",&n,&m)==2)
+ {		
+  for(i=0;i<n;i++)
+  {			
+   scanf("%d",&a);			
+   if(i==0)			
+   out=m/a;		
+  }		
+  printf("%d\n",out);	
+ }	
+ return 0;
+}
+
