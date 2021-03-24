@@ -1,0 +1,46 @@
+#include <stdio.h>  
+#include <math.h>  
+#include <string.h>  
+#define h1 1e-9
+double place(double a,char *c)
+{            
+  double k=1.0;      
+  if(strcmp(c,"meters")==0)
+  k=100.0;      
+  else if(strcmp(c,"cubits")==0)
+  k=45.72;      
+  else if(strcmp(c,"feet")==0)
+  k=30.48;      
+  else if(strcmp(c,"inches")==0)
+  k=2.54;      
+  a=a*k;      
+  return a;        
+}
+int main()  
+{               
+ double lo,wi,hi;      
+ double b[2]={0.0,0.0};      
+ char dlo[20],dwi[20],dhi[20];      
+ while(scanf("%lf",&lo)!=EOF)      
+ {          
+  scanf("%s",dlo);          
+  scanf("%lf",&wi);          
+  scanf("%s",dwi);          
+  scanf("%lf",&hi);        
+  scanf("%s",dhi);          
+  b[0]=place(lo,dlo);          
+  b[1]=place(wi,dwi);          
+  if(fabs((b[0]-b[1]))<h1) 
+   printf("Spin\n");          
+  else
+   {              
+    if(fabs((b[0]-6*b[1]))<h1) 
+     printf("Excellent\n");              
+    else 
+     printf("Neither\n");		
+   }          
+   printf("\n");    
+ }    
+return 0;
+}  
+
