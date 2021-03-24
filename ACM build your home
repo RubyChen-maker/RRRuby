@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+struct point
+{     
+ double x,y;
+}
+poly[1000];
+int main()
+{    
+ int n,i;    
+ while(scanf("%d",&n)&&n)
+ {        
+  double o=0;        
+  for(i=0;i<n;i++)            
+  scanf("%lf %lf",&poly[i].x,&poly[i].y);        
+  for(i=0;i<n;i++)
+  {            
+   o+=poly[i].x*poly[(i+1)%n].y;            
+   o-=poly[i].y*poly[(i+1)%n].x;        
+  }        
+  printf("%.lf\n",fabs(o/2.0));    
+ }    
+return 0;
+}
+
