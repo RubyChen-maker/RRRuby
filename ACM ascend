@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{	
+ char c,s[100],t[100];	
+ int i,n,ascend;	
+ while(scanf("%s",&s)&&strcmp(s,"$"))
+ {		
+  n=strlen(s);		
+  for(i=0;i<n;i++)
+  {			
+   ascend=(i+1)%26;			
+   c=s[i]-ascend;			
+   if(c<'A')			
+   c=s[i]-ascend+'Z'-'A'+1;			
+   t[i]=c;		
+  }		
+  t[i]='\0';		
+  printf("%s\n",t);	
+ }	
+return 0;
+}
