@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+using namespace std;
+long n,m,k,s,t;
+vector<long> M[200001];
+bool h[200001];
+struct
+{
+ long p;
+ long l;
+}
+q[200001];
+long bfs()
+{
+  long i;
+  if(s==t)
+  return 0;
+  long qh=0,qe=1;
+  q[1].p=s;
+  q[1].l=0;
+  memset(h,false,sizeof(h));
+  while(qh<qe)
+   {
+    qh++;
+    for(i=0;i<M[q[qh].p].size();i++)
+     {
+       if(h[M[q[qh].p][i]])
+       continue;
+       q[++qe].p=M[q[qh].p][i];
+       q[qe].l=q[qh].l+1;
+       h[M[q[qh].p][i]]=true;
+       if(q[qe].p==t)
+       return q[qe].l-1;
+     }
+   }
+  return -1;
+}
+int main()
+{
+  scanf("%ld %ld",&n,&m);
+  long a,b,i,j;
+  for(i=1;i<=m;i++)
+   {
+   scanf("%ld %ld",&a,&b);
+   M[a].push_back(b);
+   M[b].push_back(a);
+   }
+  scanf("%ld",&k);
+  for(i=1;i<=k;i++)
+   {
+   scanf("%ld %ld",&a,&b);
+   s=a;
+   t=b;
+   printf("%ld\n",bfs());
+   }
+return 0;
+}
