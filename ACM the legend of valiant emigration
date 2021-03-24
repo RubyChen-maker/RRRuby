@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define INF 53356
+char str[101][101]; 
+int point =0;  
+void  sp(int p[][100],int i2,int j2);
+void dp(int x[][100],int p[][100],int n); 
+int main()
+{    
+int nc,nr;      
+while(scanf("%d%d",&nc,&nr)!=EOF)    
+{     
+int a[4000][5];    
+char b[4000];    
+char c[4000];        
+int i,j;        
+for(i=0;i<nr;i++)    
+{          
+for(j=0;j<5;j++)          
+{                  
+scanf("%d",&a[i][j]);          
+}           
+scanf("%s",&b[i]);    
+}    
+int pl,sl;                    
+scanf("%d %d",&pl,&sl);              
+int n,i1,j1,k1;    
+int h[100][100];    
+int x[100][100],p[100][100];    
+for(i1=0;i1<nc;i1++)        
+for(j1=0;j1<nc;j1++)        
+{               
+x[i1][j1]=INF;               
+h[i1][j1]=INF;         
+}     
+for(n=0;n<nr;n++)    
+{              
+int p,q;        
+p=a[n][0];        
+q=a[n][1];         
+h[p][q]=a[n][4];         
+str[p][q]=b[n];     
+}                             
+for(i1=0;i1<nc;i1++)        
+for(j1=0;j1<nc;j1++)        
+{               
+x[i1][j1]=h[i1][j1];               
+p[i1][j1]=-1;        
+}    
+for(n=0;n<nr;n++)    
+{                            
+int p,q;        
+p=a[n][0];        
+q=a[n][1];         
+if(a[n][2]>pl||a[n][3]>sl)        
+{              
+x[p][q]=INF;        
+}    
+}    
+for(k1=0;k1<nc;k1++)    
+{        
+for(i1=0;i1<nc;i1++)              
+for(j1=0;j1<nc;j1++)                   
+if(x[i1][j1]>(x[i1][k1]+x[k1][j1]) )                 
+{                                                                                         
+x[i1][j1]=x[i1][k1]+x[k1][j1];                           
+p[i1][j1]=k1;                                                                                
+}    
+}   
+dp(x,p,nc);     
+}     
+return 0;
+} 
+void sp(int p[][100],int i2,int j2)
+{    
+int m;    
+m=p[i2][j2];    
+if(m==-1)    
+{         
+return;    
+}     
+sp(p,i2,m);    
+printf("%c",str[point][m]);     
+point = m;     
+sp(p,m,j2);
+} 
+void dp(int x[][100],int p[][100],int n)
+{    
+sp(p,0,n-1);    
+printf("%c",str[point][n-1]);           
+}
+
