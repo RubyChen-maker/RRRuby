@@ -1,0 +1,28 @@
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{	
+ int h,n,i,x=0;	
+ map<int,int> y;	cin>>h;	
+ while(h-->0)
+ {		
+  cin>>n;		
+  y.clear();		
+  x=0;		
+  while(n-->0)
+  {			
+   cin>>i; 			
+   ++y[i]; 		
+  }		
+  map<int,int>::iterator it=y.begin();		
+  for(;it!=y.end();++it)
+  {			
+   if(it->second>x)			
+   x=it->second;		
+  }		
+  cout<<x<<endl;	
+ }	
+return 0;
+} 
+
