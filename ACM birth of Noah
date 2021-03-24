@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct sum 
+{	
+  char l1[20];	
+  int l2;	
+  int l3;
+} 
+a[13]= 
+{	
+ {"Adam",1,930},	
+ {"Seth",2,912},	
+ {"Enosh",3,905},	
+ {"Kenan",4,910},	
+ {"Mahalalel",5,895},	
+ {"Jared",6,962},	
+ {"Enoch",7,365},	
+ {"Methuselah",8,969},	
+ {"Lamech",9,777},	
+ {"Noah",10,NULL},	
+ {"Shem",11,NULL},	
+ {"Ham",11,NULL},	
+ {"Japheth",11,NULL},
+};
+struct sum u= {' ',-1,-1},       
+v= {' ',-1,-1},       
+p= {' ',-1,-1},       
+q= {' ',-1,-1};
+
+int main() { 	
+char x[20],y[20];	
+int i;	
+while(scanf("%s%s",&x,&y)!=EOF) 
+{ 		
+ for(i=0; i<13; i++) 
+ {			
+ p=a[i];			
+ if(strcmp(p.l1,x)==0) 
+   {				
+    u=p;				
+    break;			
+   }		
+ }		
+  for(i=0; i<13; i++) 
+  {			
+   q=a[i];			
+   if(strcmp(q.l1,y)==0) 
+     {				
+     v=q;				
+     break;			
+     }		
+   }		
+   if(u.l2==NULL||v.l2==NULL)			
+   printf("No enough information\n");		
+   else if(u.l2<v.l2)			
+   printf("Yes\n");		
+   else			
+   printf("No\n"); 		
+   if(u.l3==NULL||v.l3==NULL)			
+   printf("No enough information\n");		
+   else if(u.l3>v.l3)			
+   printf("Yes\n");		
+   else			
+   printf("No\n");	
+ }	
+return 0;
+}
+
