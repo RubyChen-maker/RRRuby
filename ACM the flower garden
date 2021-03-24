@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+int h,k,z;
+int main()
+{    
+ int i,j;    
+ while(scanf("%d %d",&h,&k)!=EOF)    
+ {       
+  z=0;        
+  int a[k][2],b[h+1];        
+  memset(b,0,sizeof(b));        
+  for(i=0;i<k;i++)        
+  scanf("%d%d",&a[i][0],&a[i][1]);        
+  for(i=0;i<k;i++)        
+  for(j=a[i][0];j<=h;j+=a[i][1])        	
+  if(b[j]!=1)           		
+  b[j]=1;         
+  for(i=1;i<=h;i++)		
+  z+=b[i];        
+  printf("%d\n",h-z);	
+ }    
+return 0;
+}
+
