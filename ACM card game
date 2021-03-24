@@ -1,0 +1,82 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+char s[4];
+int n,k,t[30];
+struct card
+{	
+ int x,y;
+};
+card adam[28],eve[28];
+card change(char* s)
+{	
+ card temp;	
+ switch(s[0])
+ {		
+  case 'T':temp.x=10;
+  break;		
+  case 'J':temp.x=11;
+  break;		
+  case 'Q':temp.x=12;
+  break;		
+  case 'K':temp.x=13;
+  break;		
+  case 'A':temp.x=14;
+  break;		
+  default:temp.x=s[0]-'0';	
+ }	
+ switch(s[1])
+ {		
+  case 'H':temp.y=4;
+  break;		
+  case 'S':temp.y=3;
+  break;		
+  case 'D':temp.y=2;
+  break;		
+  case 'C':temp.y=1;	
+ }	
+ return temp;
+}
+bool cmp(card c1,card c2)
+{	
+ if(c1.x==c2.x)	
+ return c1.y<c2.y;	
+ else	
+ return c1.x<c2.x;
+}
+
+int main()
+{	
+ int i,j,p;	
+ scanf("%d",&n);	
+ while(n--)
+ {		
+  scanf("%d",&k);		
+  p=0;		
+  memset(t,1,sizeof(t));		
+  for(j=0;j<2;j++)		
+  for(i=0;i<k;i++)
+  {			
+   scanf("%s",&s);			
+   if(j==0)			
+   adam[i]=change(s);			
+   else			
+   eve[i]=change(s);		
+  }		
+  sort(eve,eve+k,cmp);		
+  for(i=0;i<k;i++)		
+  for(j=0;j<k;j++)
+  {			
+   if(t[j]&&cmp(adam[i],eve[j]))
+   {				
+    t[j]=0;p++;				
+    break;			
+   }		
+  }		
+  printf("%d\n",p);	
+ }	
+return 0;
+} 
+
