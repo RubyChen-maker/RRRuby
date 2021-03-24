@@ -1,0 +1,29 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;  
+char n[]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+int h[10];
+int main()
+{    
+ int r,c,i,j;    
+ while(~scanf("R%dC%d%*c",&r,&c))
+ {        
+  if(!r&&!c)break;        
+  int t=0;        
+  while(c)
+  {            
+   h[t++]=c%26;            
+   if(h[t-1]==0)
+   {                
+    h[t-1]=26;                
+    c--;            
+   }            
+   c/=26;        
+  }        
+  for(i=t-1;i>=0;i--)            
+  printf("%c",n[h[i]-1]);            
+  printf("%d\n",r);    
+ }    
+return 0;
+}
+
