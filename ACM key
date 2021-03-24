@@ -1,0 +1,66 @@
+#include <iostream>  
+#include <cstdio>  
+#include <cstring>  
+#include <algorithm>   
+//At the beginning, the parent node of each point is itself. 
+//After inserting a number, it merges with the number after it, 
+//and sets the maximum position of a number update value
+using namespace std;  
+const int MAX=200005;  
+int father[MAX]; //father[i]  
+int v[MAX];//the value of the position  
+int cmax;//Maximum position with value  
+int findset(int x)  
+{	//return father[x]==x?x:father[x]=findset(father[x]);    
+ while (x != father[x]) 
+ x = father[x];      
+ return x;  
+}    
+void Union(int x, int y)
+{      
+ x = findset( x ); //find the ancestor of x      
+ y = findset( y ); //find the ancestor of y      
+ if(x == y) return ;      
+ father[x] = y; //After merging, the ancestor is y     
+ if(y>cmax) cmax=y;  
+}   
+
+int main()  
+{      
+ int n,i;      
+ while(cin>>n&& n)
+{          
+ cmax=1;        
+ for(i=0;i<MAX;i++)
+ {              
+  father[i]=i; 
+  v[i]=0;          
+ }          
+ for(i=1;i<=n;i++)          
+ {              
+  int tmp,f;              
+  cin>>tmp;              
+  father[tmp]=findset(tmp);              
+  if(tmp== father[tmp])
+  {                  
+   v[tmp]=i;                  
+   Union(tmp,tmp+1);              
+  }              
+  else
+  {                  
+   v[father[tmp]]=i;                  
+   Union(father[tmp],father[tmp]+1);              
+  }          
+ }          
+ if(v[cmax]==0) cmax--;          	
+ cout<<cmax<<endl;          
+ for(i=1;i<=cmax;i++)
+ {              
+  cout<<v[i];              
+  if(i<cmax) cout<<" ";          
+ }          
+ cout<<endl;      
+ }      
+return 0;  
+}  
+
