@@ -1,0 +1,69 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath> 
+#include<algorithm>
+using namespace std;
+const int N=100,M=5000;
+int s1[N][N];
+struct s2
+{	
+ int x,y,c;
+};
+s2 u[M];
+int r[M];
+//The serial number of the edge
+int p[N];
+int n,t;
+int c(const int i,const int j)
+{    
+ return u[i].c<u[j].c;
+}
+//Indirect sort function 
+int f1(int a)
+{    
+ while(a!=p[a])    
+ a=p[a];    
+ return a;
+}
+//find function
+int main()
+{    
+ int i,j,m=-1,s;    
+ scanf("%d",&t);    
+ while(t--)
+ {    	
+  scanf("%d",&n);        
+  s=0;m=-1;        
+  for(i=0;i<n;i++)       
+  for(j=0;j<n;j++)            
+  scanf("%d",&s1[i][j]);        
+  for(i=0;i<n;i++)            
+  for(j=i+1;j<n;j++)
+  {                
+   m++;				
+   u[m].x=i;				
+   u[m].y=j;				
+   u[m].c=s1[i][j];                           
+  }          
+  for(i=0;i<n;i++)        
+  p[i]=i;        
+  for(i=0;i<=m;i++)        
+  r[i]=i;        
+  sort(r,r+m+1,c);       
+  for(i=0;i<=m;i++)
+  {            
+   int e=r[i];            
+   int x=f1(u[e].x);            
+   int y=f1(u[e].y);          
+   //Find the set number of the two endpoints of the current edge             
+   if(x!=y)
+   {                
+    s+=u[e].c;                
+    p[x]=y;          
+   }         
+  }        
+  printf("%d\n",s);    
+ }    
+return 0;
+}
+
