@@ -1,0 +1,58 @@
+#include <iostream>  
+#include <cstdio>  
+#include <sstream>  
+#include <cstring>  
+#include <string>  
+#include <cmath>
+#include <algorithm> 
+using namespace std;  
+const int N = 3000;  
+struct Node 
+{      
+ int t, c;      
+ bool operator < (const Node &tmp) 
+ const 
+ {         
+  return c > tmp.c;      
+ }  
+};  
+Node node[N];  
+int n;  
+bool s[N];    
+int h()  
+{      
+ int x= 0;
+ memset(s, false, sizeof(s));      
+ for(int i = 0; i < n; i++)
+ {          
+  bool ok = false;		
+  for(int j= node[i].t; j >= 1; j--) 
+  {              
+   if(!s[j]) 
+   {                  
+    s[j] = true;                  
+    ok = true;                  
+    break;              
+   }          
+  }          
+  if(!ok) x+= node[i].c;      
+ }      
+return x;  
+}    
+int main()  
+{      
+ int t;      
+ scanf("%d", &t);      
+ int r= 1;      
+ while(1 == scanf("%d", &n))
+ {          
+  if(r> 1) puts("");          
+  printf("Case %d:\n", r++);          
+  for(int i = 0; i < n; i++)            
+  scanf("%d %d", &node[i].t, &node[i].c);          
+  sort(node, node + n);		
+  printf("%d\n", h());    
+ }      
+return 0;  
+}  
+
