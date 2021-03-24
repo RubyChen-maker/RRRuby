@@ -1,0 +1,14 @@
+#include<stdio.h>
+long long n;
+int main()
+{    
+ while(scanf("%d",&n)!=EOF)
+ {    	
+  if(n==1)    	
+  printf("1\n");    	
+  else    	
+  printf("%lld\n",2*n-2);    
+ }    
+return 0;
+}
+
