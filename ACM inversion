@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{	
+ int i,j,t,f,k,m,n;	
+ while(scanf("%d %d",&n,&m)==2) 
+ {		
+  if(n==-1&&m==-1) 
+  break;		
+  t=1;		
+  while(t*(t-1)/2<m) 
+  t++;		
+  k=n-t;		
+  for(i=1; i<=k; i++) 
+  printf("%d ",i);		
+  f=m-(t-1)*(t-2)/2;		
+  printf("%d ",f+1+k);		
+  for(i=t; i>1; i--) 
+  {
+   if(i==f+1) 
+   continue;			
+   printf("%d ",i+k);		
+  }		
+  printf("%d\n",i+k);	
+ }	
+ return 0;
+}
