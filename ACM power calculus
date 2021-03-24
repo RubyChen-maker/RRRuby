@@ -1,0 +1,38 @@
+#include <stdio.h>
+#define N 1121
+int s1[N],top[N],s=1;
+long long num[N][15];
+void f1() 
+{	
+ int i,j;	
+ s1[2]=1;	
+ for(i=3;i<N;i+=2)		
+ s1[i]=1;	
+ for(i=2;i*i<N;i++)		
+ if(s1[i]==1)			
+ for(j=i*i;j<N;j+=i)				
+ s1[j]=0;	
+ top[s++]=2;	
+ for(j=1; j<N-1; j+=2)		
+ if(s1[j]==1) 
+ top[s++]=j;
+}
+
+int main() 
+{	
+ int n,k,i,j,t,m;	
+ f1();	
+ num[0][0]=1;	
+ for(i=1; i<s; i++)		
+ for(j=N-1-top[i]; j>=0; j--)			
+ for(m=14; m>0; m--)				
+ num[j+top[i]][m]+=num[j][m-1];	
+ while(scanf("%d%d",&n,&k)==2) 
+ {		
+  if(n==0&&k==0) 
+  break;		
+  printf("%d\n",num[n][k]);	
+ }	
+return 0;
+}
+
