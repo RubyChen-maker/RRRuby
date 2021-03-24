@@ -1,0 +1,16 @@
+#include<stdio.h>
+int main()
+{	
+ int t,s;	
+ float i,o;	
+ scanf("%d",&t);	
+ while(t--)
+ {		
+  scanf("%d",&s);
+  getchar();		
+  i=(float)s/100;		
+  o=(float)i*i/(1-2*i+2*i*i)*100;		
+  printf("%.2f%c\n",o,'%');	
+ }	
+return 0;
+}
