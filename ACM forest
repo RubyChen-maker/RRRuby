@@ -1,0 +1,45 @@
+#include<stdio.h>  
+#include<iostream>  
+#include<string>  
+using namespace std;      
+int main()
+{      
+ char* q[8] = {"littleken", "knuthocean", "dongfangxu", "zap", "kittig", "robertcui", "forest", "flirly" };      
+ char w[8] = { 'l', 'k', 'd', 'z', 'k', 'r', 'f', 'f' };      
+ char e[8] = { 'i', 'n', 'o', 'a', 'i', 'o', 'o','l' };      
+ int next[8] = { 9, 10, 10, 3, 6, 9, 6, 6 };      
+ int k;      
+ cin >> k;      
+ for (int h = 0; h < k; h++)
+ {          
+  string t;          
+  cin >> t;          
+  int s= 0;          
+  int point= 0;          
+  int v[8] = { 0 };              
+  for (string::iterator it = t.begin();it != t.end();)
+  {              
+   for (int i = 0;i < 8;i++)
+   {                  
+    if (*it == w[i] && *(it + 1) == e[i])
+    {                      
+     it += next[i];                      
+     v[i]++;                      
+     break;                  
+    }              
+   }          
+  }            
+  for (int i = 0; i < 8; i++)
+  {              
+   if (s<v[i])              
+   {                  
+    s=v[i];                 
+    point= i;              
+   }          
+  }         
+  printf("%s\n", q[point]);      
+ }
+}  
+  
+
+
