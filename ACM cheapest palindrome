@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+#define min(x,y) (x)<(y)?(x):(y)
+int t[2000][2000],cost[2000];
+char s[2000],c;
+int main()
+{	
+ int i,j,m,n,a,b;    
+ cin>>n>>m>>s+1; 	
+ for(i=1;i<=n;i++)
+ {    	
+  cin>>c>>a>>b;  		
+  cost[c-'a']=min(a,b); 	
+ }    
+ for(i=m-1;i>=1;i--) 	
+ for(j=i+1;j<=m;j++)
+ {        
+  if(s[i]==s[j])   			
+  t[i][j]=t[i+1][j-1];  		
+  else
+  {        	
+   a=t[i+1][j]+cost[s[i]-'a'];   			
+   b=t[i][j-1]+cost[s[j]-'a'];   			
+   t[i][j]=min(a,b);  		
+  } 	
+ } 	
+ cout<<t[1][m]<<endl; 	
+ return 0;
+}
+
